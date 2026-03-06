@@ -37,15 +37,20 @@ export function AdminUsers({ roleType = 'doctor' }) {
   const addLabel = roleType === 'doctor' ? t('add_doctor') : t('add_nurse');
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-slate-800">{title}</h2>
+    <div className="space-y-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800">{title}</h2>
+          <p className="mt-1 text-sm text-slate-500">
+            {roleType === 'doctor' ? 'Add and manage doctors' : 'Add and manage nurses'}
+          </p>
+        </div>
         <Button onClick={() => setShowForm(!showForm)}>{showForm ? t('cancel') : addLabel}</Button>
       </div>
       {showForm && (
         <Card>
           <CardHeader>{addLabel}</CardHeader>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex max-w-xl flex-col gap-5">
             <Input
               label={t('name')}
               value={form.name}
@@ -72,7 +77,9 @@ export function AdminUsers({ roleType = 'doctor' }) {
               onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
             />
             {registerMutation.error && (
-              <p className="text-sm text-red-600">{registerMutation.error.message}</p>
+              <p className="rounded-xl bg-red-50 px-3 py-2 text-sm text-red-600">
+                {registerMutation.error.message}
+              </p>
             )}
             <Button type="submit" disabled={registerMutation.isPending}>
               {t('save')}
@@ -83,30 +90,32 @@ export function AdminUsers({ roleType = 'doctor' }) {
       <Card>
         <CardHeader>{title}</CardHeader>
         {isLoading ? (
-          <p className="text-slate-500">Loading...</p>
+          <p className="py-8 text-center text-slate-500">Loading...</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="px-4 py-3 font-semibold text-slate-700">{t('name')}</th>
-                  <th className="px-4 py-3 font-semibold text-slate-700">{t('email')}</th>
-                  <th className="px-4 py-3 font-semibold text-slate-700">{t('phone')}</th>
-                  <th className="px-4 py-3 font-semibold text-slate-700">{t('role')}</th>
+          <div className="overflow-hidden rounded-xl border border-slate-200/80">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-slate-200/80 bg-slate-50/80">
+                  <th className="px-5 py-4 font-semibold text-slate-700">{t('name')}</th>
+                  <th className="px-5 py-4 font-semibold text-slate-700">{t('email')}</th>
+                  <th className="px-5 py-4 font-semibold text-slate-700">{t('phone')}</th>
+                  <th className="px-5 py-4 font-semibold text-slate-700">{t('role')}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {users.map((u) => (
-                  <tr key={u._id}>
-                    <td className="px-4 py-3 font-medium text-slate-800">{u.name}</td>
-                    <td className="px-4 py-3 text-slate-600">{u.email}</td>
-                    <td className="px-4 py-3 text-slate-600">{u.phone || '—'}</td>
-                    <td className="px-4 py-3 text-slate-600">{t(u.role)}</td>
+                  <tr key={u._id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="px-5 py-4 font-medium text-slate-800">{u.name}</td>
+                    <td className="px-5 py-4 text-slate-600">{u.email}</td>
+                    <td className="px-5 py-4 text-slate-600">{u.phone || '—'}</td>
+                    <td className="px-5 py-4 text-slate-600">{t(u.role)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            {!users.length && <p className="p-4 text-slate-500">{t('no_patients')}</p>}
+            {!users.length && (
+              <p className="p-8 text-center text-slate-500">{t('no_patients')}</p>
+            )}
           </div>
         )}
       </Card>

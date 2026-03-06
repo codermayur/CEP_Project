@@ -1,11 +1,11 @@
 import { cn } from '../../lib/utils.js';
 
 const statusColors = {
-  scheduled: 'bg-blue-100 text-blue-800',
-  waiting: 'bg-amber-100 text-amber-800',
-  completed: 'bg-green-100 text-green-800',
-  cancelled: 'bg-red-100 text-red-800',
-  missed: 'bg-slate-100 text-slate-700',
+  scheduled: 'bg-sky-50 text-sky-700 border-sky-200/60',
+  waiting: 'bg-amber-50 text-amber-800 border-amber-200/60',
+  completed: 'bg-emerald-50 text-emerald-700 border-emerald-200/60',
+  cancelled: 'bg-red-50 text-red-700 border-red-200/60',
+  missed: 'bg-slate-100 text-slate-600 border-slate-200/60',
 };
 
 export function Badge({ status, className, children }) {
@@ -13,8 +13,8 @@ export function Badge({ status, className, children }) {
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full px-3 py-1 text-sm font-medium',
-        statusColors[status] || 'bg-slate-100 text-slate-700',
+        'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium',
+        statusColors[status] || 'bg-slate-100 text-slate-600 border-slate-200/60',
         className
       )}
     >

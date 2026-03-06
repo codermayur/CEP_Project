@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  background-color: #f8fafc;
+@layer base {
+  body {
+    @apply m-0 font-sans text-slate-800 antialiased;
+    background-color: #f0fdfa;
+  }
+}
+
+/* Smooth focus rings for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-white;
 }

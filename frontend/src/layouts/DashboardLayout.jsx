@@ -12,9 +12,9 @@ export function DashboardLayout({ titleKey = 'dashboard' }) {
   return (
     <div className="flex min-h-screen bg-background">
       <Sidebar role={user?.role} />
-      <div className="flex flex-1 flex-col">
+      <div className="ml-[260px] flex flex-1 flex-col min-w-0">
         <Navbar title={title} />
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 md:p-8 lg:p-10">
           <Outlet />
         </main>
       </div>

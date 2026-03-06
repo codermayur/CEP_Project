@@ -1,5 +1,11 @@
 {
   "login": "Login",
+  "register": "Register",
+  "dont_have_account": "Don't have an account?",
+  "back_to_login": "Back to Login",
+  "register_help": "How to get access",
+  "register_help_staff": "Staff accounts (doctors and nurses) are created by an administrator. You cannot sign up here.",
+  "register_help_contact": "Contact your administrator to get your login credentials.",
   "email": "Email",
   "password": "Password",
   "register_patient": "Register Patient",

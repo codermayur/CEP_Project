@@ -24,9 +24,12 @@ export function NurseDashboard() {
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-slate-800">{t('nurse_dashboard')}</h2>
-      <div className="grid gap-4 sm:grid-cols-2">
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-bold text-slate-800">{t('nurse_dashboard')}</h2>
+        <p className="mt-1 text-sm text-slate-500">Manage today&apos;s appointments</p>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
         <DashboardCard
           title={t('today_appointments')}
           value={appointments.length}
@@ -40,7 +43,11 @@ export function NurseDashboard() {
       </div>
       <Card>
         <CardHeader>{t('today_appointments')}</CardHeader>
-        <AppointmentTable appointments={appointments} showCheckIn onCheckIn={handleCheckIn} />
+        <AppointmentTable
+          appointments={appointments}
+          showCheckIn
+          onCheckIn={handleCheckIn}
+        />
       </Card>
     </div>
   );

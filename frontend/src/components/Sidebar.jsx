@@ -8,6 +8,7 @@ import {
   CalendarPlus,
   UserCog,
   BarChart3,
+  Stethoscope,
 } from 'lucide-react';
 import { cn } from '../lib/utils.js';
 
@@ -38,21 +39,29 @@ export function Sidebar({ role }) {
     role === 'admin' ? adminLinks : role === 'doctor' ? doctorLinks : role === 'nurse' ? nurseLinks : [];
 
   return (
-    <aside className="w-56 shrink-0 border-r border-slate-200 bg-white p-4">
-      <nav className="flex flex-col gap-1">
+    <aside className="fixed left-0 top-0 z-20 flex h-screen w-[260px] flex-col border-r border-slate-200/80 bg-white shadow-sidebar">
+      <div className="flex h-16 items-center gap-3 border-b border-slate-100 px-5">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-soft">
+          <Stethoscope className="h-5 w-5" />
+        </div>
+        <span className="truncate text-sm font-semibold text-slate-800">Healthcare</span>
+      </div>
+      <nav className="flex-1 space-y-0.5 overflow-y-auto p-4">
         {links.map(({ to, icon: Icon, label }) => (
           <NavLink
             key={to}
             to={to}
             className={({ isActive }) =>
               cn(
-                'flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition',
-                isActive ? 'bg-primary text-white' : 'text-slate-600 hover:bg-slate-100'
+                'flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200',
+                isActive
+                  ? 'bg-primary/10 text-primary shadow-sm'
+                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-800'
               )
             }
           >
-            <Icon className="h-5 w-5" />
-            {label}
+            <Icon className="h-5 w-5 shrink-0 opacity-90" />
+            <span className="truncate">{label}</span>
           </NavLink>
         ))}
       </nav>

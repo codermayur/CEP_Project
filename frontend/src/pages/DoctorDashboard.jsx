@@ -31,9 +31,12 @@ export function DoctorDashboard() {
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-slate-800">{t('doctor_dashboard')}</h2>
-      <div className="grid gap-4 sm:grid-cols-2">
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-bold text-slate-800">{t('doctor_dashboard')}</h2>
+        <p className="mt-1 text-sm text-slate-500">Today&apos;s schedule and queue</p>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
         <DashboardCard
           title={t('today_appointments')}
           value={appointments.length}
@@ -45,8 +48,8 @@ export function DoctorDashboard() {
           icon={Users}
         />
       </div>
-      <div>
-        <h3 className="mb-3 text-lg font-semibold text-slate-800">{t('today_appointments')}</h3>
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-slate-800">{t('today_appointments')}</h3>
         <AppointmentTable
           appointments={appointments}
           onComplete={async (id) => {

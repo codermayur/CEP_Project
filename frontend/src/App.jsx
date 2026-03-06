@@ -4,6 +4,7 @@ import './i18n';
 import { ProtectedRoute } from './components/ProtectedRoute.jsx';
 import { DashboardLayout } from './layouts/DashboardLayout.jsx';
 import { Login } from './pages/Login.jsx';
+import { Register } from './pages/Register.jsx';
 import { AdminDashboard } from './pages/AdminDashboard.jsx';
 import { AdminUsers } from './pages/AdminUsers.jsx';
 import { AdminAnalytics } from './pages/AdminAnalytics.jsx';
@@ -25,6 +26,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/admin"
             element={
